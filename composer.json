@@ -1,0 +1,14 @@
+{
+  "name": "webman-micro/migrations",
+  "type": "library",
+  "license": "MIT",
+  "description": "Webman plugin webman-micro/migrations",
+  "require": {
+    "robmorgan/phinx": "^0.16.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "WebmanMicro\\Migrations\\": "src"
+    }
+  }
+}
