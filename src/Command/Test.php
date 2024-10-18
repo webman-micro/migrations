@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace WebmanMicro\Migrations\Command;
 
 use InvalidArgumentException;
+use Phinx\Config\Config;
 use Phinx\Migration\Manager\Environment;
 use Phinx\Util\Util;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -61,6 +62,12 @@ EOT
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $configPath =   config_path('plugin/webman-micro/migrations/app.php');
+        $phinxConfig = new Config(config('plugin.webman-micro.migrations.app',) ?? [], $configPath);
+        if(!empty($phinxConfig)){
+            $this->setConfig($phinxConfig);
+        }
+        
         if (!$this->hasConfig()) {
             $this->loadConfig($input, $output);
         }
